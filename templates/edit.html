@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Edit Job</h2>
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" value="{{ job.title }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Company</label>
+        <input type="text" name="company" class="form-control" value="{{ job.company }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Date Applied</label>
+        <input type="text" name="date_applied" class="form-control" value="{{ job.date_applied }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="{{ url_for('view_jobs') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

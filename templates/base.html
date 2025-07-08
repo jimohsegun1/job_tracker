@@ -7,13 +7,36 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
         <a class="navbar-brand" href="/">Job Tracker</a>
-        <div class="navbar-nav">
-            <a class="nav-link" href="/add">Add Job</a>
-            <a class="nav-link" href="/jobs">View Jobs</a>
+
+        <div class="navbar-nav me-auto">
+            {% if current_user.is_authenticated %}
+                <a class="nav-link" href="/add">Add Job</a>
+                <a class="nav-link" href="/jobs">My Jobs</a>
+            {% endif %}
+        </div>
+
+        <div class="navbar-nav ms-auto">
+            {% if current_user.is_authenticated %}
+                <span class="nav-link disabled">Hello, {{ current_user.username }}</span>
+                <a class="nav-link text-danger" href="/logout">Logout</a>
+            {% else %}
+                <a class="nav-link" href="/register">Register</a>
+                <a class="nav-link" href="/login">Login</a>
+            {% endif %}
         </div>
     </nav>
     
     <div class="container mt-4">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-info">
+                    {% for message in messages %}
+                        <div>{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
         {% block content %}{% endblock %}
     </div>
 </body>

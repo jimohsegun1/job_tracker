@@ -5,7 +5,7 @@
 {% if jobs %}
     <ul class="list-group">
         {% for job in jobs %}
-            <li class="list-group-item">
+            <li class="list-group-item mb-3">
                 <strong>{{ job.title }}</strong> at {{ job.company }} — Applied on {{ job.date_applied }}
             </li>
         {% endfor %}

@@ -103,38 +103,6 @@ def view_jobs():
     return render_template('jobs.html', jobs=jobs)
 
 
-@app.route('/edit/<int:job_id>', methods=['GET', 'POST'])
-@login_required
-def edit_job(job_id):
-    job = Job.query.get_or_404(job_id)
-
-    if job.user_id != current_user.id:
-        flash("You don't have permission to edit this job.")
-        return redirect(url_for('view_jobs'))
-
-    if request.method == 'POST':
-        job.title = request.form['title']
-        job.company = request.form['company']
-        job.date_applied = request.form['date_applied']
-        db.session.commit()
-        flash("Job updated successfully.")
-        return redirect(url_for('view_jobs'))
-
-    return render_template('edit.html', job=job)
-
-@app.route('/delete/<int:job_id>', methods=['POST'])
-@login_required
-def delete_job(job_id):
-    job = Job.query.get_or_404(job_id)
-
-    if job.user_id != current_user.id:
-        flash("You don't have permission to delete this job.")
-        return redirect(url_for('view_jobs'))
-
-    db.session.delete(job)
-    db.session.commit()
-    flash("Job deleted successfully.")
-    return redirect(url_for('view_jobs'))
 
 
 if __name__ == '__main__':

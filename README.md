@@ -12,16 +12,30 @@
 
 ```
 job_tracker/
-├── app.py
-├── models.py
-├── templates/
-│   ├── base.html
-│   ├── index.html
-│   ├── register.html
-│   ├── login.html
-│   ├── add.html
-│   └── jobs.html
+├── app/
+│   ├── __pycache__/
+│   ├── __init__.py
+│   ├── models/
+│   ├── routes/
+│   │   ├── __pycache__/
+│   │   ├── __init__.py
+│   │   ├── auth.py
+│   │   ├── home.py
+│   │   └── job_routes.py
+│   ├── templates/
+│   │   ├── add.html
+│   │   ├── base.html
+│   │   ├── edit.html
+│   │   ├── index.html
+│   │   ├── jobs.html
+│   │   ├── login.html
+│   │   └── register.html
+│   └── __init__.py
 ├── instance/
-│   └── job_tracker.db
+├── migrations/
+├── .gitignore
+├── config.py
+├── README.md
+└── run.py
 
 ```
